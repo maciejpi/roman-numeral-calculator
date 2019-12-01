@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react";
+import styled from "styled-components/macro";
 
-function App() {
+import Calculator from "./Calculator";
+import { SharedStateContext } from "./context";
+import initialState from "./initialState";
+import reducer from "./reducer";
+import GlobalStyle from "./styles/global";
+import { space } from "./styles/helpers";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: ${space()};
+`;
+
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <SharedStateContext.Provider value={{ state, dispatch }}>
+        <Wrapper>
+          <Calculator />
+        </Wrapper>
+      </SharedStateContext.Provider>
+    </>
   );
-}
+};
 
 export default App;
