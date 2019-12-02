@@ -45,9 +45,9 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({ symbol, isSpread, onClick, buttonType }) => {
+const Button = ({ symbol, onClick, buttonType }) => {
   return (
-    <StyledButton buttonType={buttonType} onClick={onClick} isSpread={isSpread}>
+    <StyledButton buttonType={buttonType} onClick={onClick}>
       {symbol}
     </StyledButton>
   );

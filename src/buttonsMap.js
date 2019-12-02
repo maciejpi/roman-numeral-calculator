@@ -11,6 +11,6 @@ export const buttonsMap = [
   { symbol: "*", type: "operator" },
   { symbol: "-", type: "operator" },
   { symbol: "÷", type: "operator" },
-  { symbol: "=", type: "equal", spread: true },
-  { symbol: "Clear", type: "clear", spread: true }
+  { symbol: "=", type: "equal" },
+  { symbol: "Clear", type: "clear" }
 ];
