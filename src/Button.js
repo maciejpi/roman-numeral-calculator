@@ -45,12 +45,10 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({ symbol, onClick, buttonType }) => {
-  return (
-    <StyledButton buttonType={buttonType} onClick={onClick}>
-      {symbol}
-    </StyledButton>
-  );
-};
+const Button = ({ symbol, onClick, type }) => (
+  <StyledButton buttonType={type} onClick={onClick}>
+    {symbol}
+  </StyledButton>
+);
 
 export default Button;

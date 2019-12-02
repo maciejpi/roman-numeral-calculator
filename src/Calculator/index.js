@@ -111,7 +111,6 @@ const Calculator = () => {
         <ButtonsGrid>
           {buttonsMap.map(item => (
             <Button
-              buttonType={item.type}
               onClick={() => handleClick(item)}
               key={item.symbol}
               {...item}
