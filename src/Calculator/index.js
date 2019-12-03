@@ -31,7 +31,7 @@ const Calculator = () => {
     }
 
     if (type === "equal") {
-      if (!currentValue) return;
+      if (!currentValue || !prevValue) return;
 
       if (infoMessage) {
         dispatch({ type: "setInfoMessage", item: {} });
