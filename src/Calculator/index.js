@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Button from "../Button";
 import { buttonsMap } from "../buttonsMap";
 import { SharedStateContext } from "../context";
-import { convertFromRoman, convertToRoman } from "../helpers";
+import { convertFromRoman, convertToRoman } from "../helpers/";
 import {
   ButtonsGrid,
   StyledCalculator,
