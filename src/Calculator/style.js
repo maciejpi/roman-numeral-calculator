@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 import { font, space } from "../styles/helpers";
 import { colors, contentWidth, radiusValue } from "../styles/variables";

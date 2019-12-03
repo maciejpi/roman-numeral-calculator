@@ -1,5 +1,5 @@
 import { normalize } from "polished";
-import { createGlobalStyle } from "styled-components/macro";
+import { createGlobalStyle } from "styled-components";
 
 import { font } from "./helpers";
 
