@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React, { useReducer } from "react";
 
 import Button from "../Button";
 import { buttonsMap } from "../buttonsMap";
-import { SharedStateContext } from "../context";
 import { convertFromRoman, convertToRoman } from "../helpers/";
+import InfoMessage from "../InfoMessage";
+import initialState from "../initialState";
+import reducer from "../reducer";
 import {
   ButtonsGrid,
+  CalculatorWrapper,
   StyledCalculator,
-  StyledInput,
-  CalculatorWrapper
+  StyledInput
 } from "./style";
-import InfoMessage from "../InfoMessage";
 
 const operatorsMap = {
   "+": (x, y) => x + y,
@@ -20,10 +21,9 @@ const operatorsMap = {
 };
 
 const Calculator = () => {
-  const {
-    state: { currentValue, prevValue, operator, infoMessage },
-    dispatch
-  } = useContext(SharedStateContext);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { currentValue, prevValue, operator, infoMessage } = state;
 
   const handleClick = ({ type, symbol }) => {
     if (type === "clear") {
@@ -47,7 +47,10 @@ const Calculator = () => {
             "The result is not a positive number and cannot be expressed in roman numerals.",
           infoType: "error"
         };
-        dispatch({ type: "setInfoMessage", item: message });
+        dispatch({
+          type: "setInfoMessage",
+          item: message
+        });
       }
 
       if (!Number.isInteger(total)) {
@@ -56,13 +59,19 @@ const Calculator = () => {
           content: "The result is rounded to the nearest integer.",
           infoType: "warning"
         };
-        dispatch({ type: "setInfoMessage", item: message });
+        dispatch({
+          type: "setInfoMessage",
+          item: message
+        });
       }
 
       const result = convertToRoman(total);
       dispatch({ type: "setPrevValue", item: "" });
       dispatch({ type: "setOperator", item: "" });
-      dispatch({ type: "setCurrentValue", item: result });
+      dispatch({
+        type: "setCurrentValue",
+        item: result
+      });
     }
 
     if (type === "operator") {
@@ -73,7 +82,10 @@ const Calculator = () => {
       }
 
       dispatch({ type: "setOperator", item: symbol });
-      dispatch({ type: "setPrevValue", item: currentValue });
+      dispatch({
+        type: "setPrevValue",
+        item: currentValue
+      });
       dispatch({ type: "setCurrentValue", item: "" });
     }
 
@@ -92,10 +104,16 @@ const Calculator = () => {
           content: errorMessage,
           infoType: "error"
         };
-        return dispatch({ type: "setInfoMessage", item: info });
+        return dispatch({
+          type: "setInfoMessage",
+          item: info
+        });
       }
       dispatch({ type: "setInfoMessage", item: {} });
-      dispatch({ type: "setCurrentValue", item: updatedValue });
+      dispatch({
+        type: "setCurrentValue",
+        item: updatedValue
+      });
     }
   };
 
@@ -103,7 +121,7 @@ const Calculator = () => {
 
   return (
     <CalculatorWrapper>
-      <InfoMessage />
+      <InfoMessage infoMessage={infoMessage} />
 
       <StyledCalculator>
         <StyledInput type="text" value={displayedValue} disabled />

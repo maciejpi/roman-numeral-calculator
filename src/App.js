@@ -1,10 +1,7 @@
-import React, { useReducer } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Calculator from "./Calculator";
-import { SharedStateContext } from "./context";
-import initialState from "./initialState";
-import reducer from "./reducer";
 import GlobalStyle from "./styles/global";
 import { space } from "./styles/helpers";
 
@@ -19,15 +16,12 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
       <GlobalStyle />
-      <SharedStateContext.Provider value={{ state, dispatch }}>
-        <Wrapper>
-          <Calculator />
-        </Wrapper>
-      </SharedStateContext.Provider>
+      <Wrapper>
+        <Calculator />
+      </Wrapper>
     </>
   );
 };
